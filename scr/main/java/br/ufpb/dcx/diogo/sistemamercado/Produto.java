@@ -21,10 +21,6 @@ public class Produto {
         return codigoProduto;
     }
 
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
-    }
-
     public String getNomeProduto() {
         return nomeProduto;
     }

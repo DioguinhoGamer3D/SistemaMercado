@@ -11,9 +11,10 @@ public class GerenciaEstoque implements Estoque{
             this.produtos = new HashMap<>();
     }
 
-    public void cadastrarProduto(String codigoProduto, String nomeProduto, int quantidade, double preco) throws ProdutoJaExisteException{
+    public void cadastrarProduto(String codigoProduto, String nomeProduto, int quantidade, double preco)
+            throws ProdutoJaExisteException{
         if(produtos.containsKey(codigoProduto)){
-            throw new ProdutoJaExisteException("Já existe produto com código"+codigoProduto);
+            throw new ProdutoJaExisteException("Já existe produto com código: "+codigoProduto);
         } else{
             Produto produto = new Produto(codigoProduto, nomeProduto, quantidade, preco);
             produtos.put(codigoProduto, produto);
@@ -28,24 +29,51 @@ public class GerenciaEstoque implements Estoque{
                 }
             }
             return produtosComBaixoEstoque;
-        }
-        public void removerProduto(String codigoProduto) throws ProdutoInexistenteException {
-            if (!produtos.containsKey(codigoProduto)) {
-                throw new ProdutoInexistenteException("Produto não encontrado: " + codigoProduto);
-            }
-            produtos.remove(codigoProduto);
-        }
+    }
 
-        public void salvarDados() throws IOException {
+    public void removerProduto(String codigoProduto) throws ProdutoInexistenteException {
+        if (!produtos.containsKey(codigoProduto)) {
+            throw new ProdutoInexistenteException("Produto não encontrado: " + codigoProduto);
+        }
+        produtos.remove(codigoProduto);
+    }
+
+    public Produto pesquisaProduto(String codigoProduto) throws ProdutoInexistenteException {
+        if(produtos.containsKey(codigoProduto)){
+            for(Produto p:produtos.values()){
+                return p;
+            }
+        }
+        throw new ProdutoInexistenteException("Não existe produto com o código: "+codigoProduto);
+    }
+
+    public double pesquisaPreco(String codigoProduto) throws ProdutoInexistenteException {
+        return pesquisaProduto(codigoProduto).getPreco();
+    }
+
+    public void alterarNome(String codigoProduto, String novoNome) throws ProdutoInexistenteException {
+        pesquisaProduto(codigoProduto).setNomeProduto(novoNome);
+    }
+
+    public void alterarPreco(String codigoProduto, double novoPreco) throws ProdutoInexistenteException{
+        pesquisaProduto(codigoProduto).setPreco(novoPreco);
+    }
+
+    public void alterarQuantidade(String codigoProduto, int novaQuantidade) throws ProdutoInexistenteException {
+        pesquisaProduto(codigoProduto).setQuantidade(novaQuantidade);
+    }
+
+    public void recuperarDados() throws IOException {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("estoque.dat"))) {
+            produtos = (Map<String, Produto>) in.readObject();
+        } catch (ClassNotFoundException | ClassCastException e) {
+            throw new IOException("Erro ao recuperar dados do estoque", e);
+        }
+    }
+
+    public void salvarDados() throws IOException {
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("estoque.dat"))) {
                 out.writeObject(produtos);
-            }
-        }
-        public void recuperarDados() throws IOException {
-            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("estoque.dat"))) {
-                produtos = (Map<String, Produto>) in.readObject();
-            } catch (ClassNotFoundException e) {
-                throw new IOException("Erro ao recuperar dados do estoque", e);
             }
         }
 }

@@ -13,6 +13,21 @@ public interface Estoque {
     // Remove um produto pelo codigo
     public void removerProduto(String codigoProduto) throws ProdutoInexistenteException;
 
+    // Pesquisa produtos por codigo
+    public Produto pesquisaProduto(String codigoProduto) throws ProdutoInexistenteException;
+
+    // Verifica preço do produto
+    public double pesquisaPreco(String codigoProduto) throws ProdutoInexistenteException;
+
+    // Alterar a quantidade
+    public void alterarQuantidade(String codigoProduto, int novaQuantidade) throws ProdutoInexistenteException;
+
+    // Alterar o nome
+    public void alterarNome(String codigoProduto, String novoNome) throws ProdutoInexistenteException;
+
+    // Alterar o preço
+    public void alterarPreco(String codigoProduto, double novoPreco) throws ProdutoInexistenteException;
+
     // Salva os dados do estoque em um arquivo
     public void salvarDados() throws IOException;
 
