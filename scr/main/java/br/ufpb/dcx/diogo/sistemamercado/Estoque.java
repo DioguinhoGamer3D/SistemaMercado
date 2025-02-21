@@ -2,13 +2,14 @@ package br.ufpb.dcx.diogo.sistemamercado;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 public interface Estoque {
     // Adiciona um novo produto ao estoque
     public void cadastrarProduto(String codigoProduto, String nomeProduto, int quantidade, double preco) throws ProdutoJaExisteException;
 
     // Pesquisa produtos com quantidade abaixo de um limite especificado
-    public Collection<Produto> pesquisarProdutosComBaixoEstoque(int limite);
+    public List<Produto> pesquisarProdutosComBaixoEstoque(int limite);
 
     // Remove um produto pelo codigo
     public void removerProduto(String codigoProduto) throws ProdutoInexistenteException;
@@ -27,6 +28,9 @@ public interface Estoque {
 
     // Alterar o preço
     public void alterarPreco(String codigoProduto, double novoPreco) throws ProdutoInexistenteException;
+
+    // Pesquisar todos os produtos
+    public List<Produto> pesquisaTodosOsProdutos();
 
     // Salva os dados do estoque em um arquivo
     public void salvarDados() throws IOException;

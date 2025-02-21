@@ -21,7 +21,7 @@ public class GerenciaEstoque implements Estoque{
         }
     }
 
-    public Collection<Produto> pesquisarProdutosComBaixoEstoque(int limite) {
+    public List<Produto> pesquisarProdutosComBaixoEstoque(int limite) {
             List<Produto> produtosComBaixoEstoque = new ArrayList<>();
             for (Produto produto : produtos.values()) {
                 if (produto.getQuantidade() < limite) {
@@ -61,6 +61,10 @@ public class GerenciaEstoque implements Estoque{
 
     public void alterarQuantidade(String codigoProduto, int novaQuantidade) throws ProdutoInexistenteException {
         pesquisaProduto(codigoProduto).setQuantidade(novaQuantidade);
+    }
+
+    public List<Produto> pesquisaTodosOsProdutos() {
+        return new ArrayList<>(produtos.values());
     }
 
     public void recuperarDados() throws IOException {
