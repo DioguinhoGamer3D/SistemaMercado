@@ -1,8 +1,9 @@
 package br.ufpb.dcx.diogo.sistemamercado;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Produto {
+public class Produto implements Serializable {
     private String codigoProduto;
     private String nomeProduto;
     private int quantidade;
