@@ -12,7 +12,7 @@ public class Produto implements Serializable {
 
     public Produto(String codigoProduto, String nomeProduto, int quantidade, double preco) {
         this.codigoProduto = codigoProduto;
-        this.nomeProduto=nomeProduto;
+        this.nomeProduto = nomeProduto;
         this.quantidade = quantidade;
         this.preco = preco;
     }
@@ -53,17 +53,5 @@ public class Produto implements Serializable {
                 ", quantidade: " + quantidade +
                 ", preco: R$" + preco +
                 '.';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Produto produto = (Produto) o;
-        return Objects.equals(codigoProduto, produto.codigoProduto);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(codigoProduto);
     }
 }

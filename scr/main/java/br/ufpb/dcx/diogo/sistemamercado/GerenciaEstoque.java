@@ -21,14 +21,25 @@ public class GerenciaEstoque implements Estoque{
         }
     }
 
-    public List<Produto> pesquisarProdutosComBaixoEstoque(int limite) {
+    public Produto pesquisaProduto(String codigoProduto) throws ProdutoInexistenteException {
+        if(produtos.containsKey(codigoProduto)){
+            return produtos.get(codigoProduto);
+        }
+        throw new ProdutoInexistenteException("Não existe produto com o código: "+codigoProduto);
+    }
+
+    public List<Produto> pesquisarProdutosComBaixoEstoque(int limite) throws ProdutoInexistenteException{
             List<Produto> produtosComBaixoEstoque = new ArrayList<>();
             for (Produto produto : produtos.values()) {
                 if (produto.getQuantidade() < limite) {
                     produtosComBaixoEstoque.add(produto);
                 }
             }
-            return produtosComBaixoEstoque;
+            if(produtosComBaixoEstoque.isEmpty()){
+                throw new ProdutoInexistenteException("Não existe produto com menos que essa quantidade no estoque.");
+            } else {
+                return produtosComBaixoEstoque;
+            }
     }
 
     public void removerProduto(String codigoProduto) throws ProdutoInexistenteException {
@@ -36,15 +47,6 @@ public class GerenciaEstoque implements Estoque{
             throw new ProdutoInexistenteException("Produto não encontrado: " + codigoProduto);
         }
         produtos.remove(codigoProduto);
-    }
-
-    public Produto pesquisaProduto(String codigoProduto) throws ProdutoInexistenteException {
-        if(produtos.containsKey(codigoProduto)){
-            for(Produto p:produtos.values()){
-                return p;
-            }
-        }
-        throw new ProdutoInexistenteException("Não existe produto com o código: "+codigoProduto);
     }
 
     public double pesquisaPreco(String codigoProduto) throws ProdutoInexistenteException {

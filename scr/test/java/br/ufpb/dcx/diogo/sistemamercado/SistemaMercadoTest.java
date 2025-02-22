@@ -29,20 +29,24 @@ public class SistemaMercadoTest {
         }
         try{
             sistema.cadastrarProduto("001","Arroz", 5, 4.99);
-            Produto p = sistema.pesquisaProduto("001");
-            assertEquals("Arroz",p.getNomeProduto());
-            assertEquals(5, p.getQuantidade());
-            assertEquals(4.99, p.getPreco());
+            Produto a = sistema.pesquisaProduto("001");
+            assertEquals("Arroz",a.getNomeProduto());
+            assertEquals(5, a.getQuantidade());
+            assertEquals(4.99, a.getPreco());
+            sistema.cadastrarProduto("002","Feijão",2,6.99);
+            Produto f = sistema.pesquisaProduto("002");
+            assertEquals("Feijão",f.getNomeProduto());
+            assertEquals(2, f.getQuantidade());
+            assertEquals(6.99, f.getPreco());
         } catch(ProdutoInexistenteException | ProdutoJaExisteException e){
             fail("Não deveria lançar excewção");
         }
     }
     @Test
-    public void testaPesquisarProdutosComBaixoEstoque(){
+    public void testaPesquisarProdutosComBaixoEstoque() throws ProdutoInexistenteException {
         try {
-            assertTrue(sistema.pesquisarProdutosComBaixoEstoque(5).isEmpty());
             sistema.cadastrarProduto("001","Arroz", 5, 4.99);
-            assertEquals(sistema.pesquisarProdutosComBaixoEstoque(5).size(), 0);
+            assertThrows(ProdutoInexistenteException.class, ()->sistema.pesquisarProdutosComBaixoEstoque(5));
             sistema.cadastrarProduto("002","Feijão", 2, 6.99);
             assertEquals(sistema.pesquisarProdutosComBaixoEstoque(5).size(), 1);
             sistema.cadastrarProduto("003","Macarrão", 1, 3.99);
