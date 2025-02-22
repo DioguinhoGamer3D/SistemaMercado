@@ -81,5 +81,5 @@ public class GerenciaEstoque implements Estoque{
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("estoque.dat"))) {
                 out.writeObject(produtos);
             }
-        }
+    }
 }
