@@ -89,6 +89,7 @@ public class SistemaMercado {
                     JOptionPane.showMessageDialog(null, "Saindo...");
                     System.exit(0);
                     break;
+
             }
         }
     }
