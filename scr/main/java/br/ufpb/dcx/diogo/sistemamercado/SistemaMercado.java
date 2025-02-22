@@ -2,12 +2,10 @@ package br.ufpb.dcx.diogo.sistemamercado;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaMercado {
-    //Fazer um main com switch com as opções
-// e um salvador automatico(fazer um if no começo do while antes de escolher alguma opcao)
+
     public static void main(String[] args) throws ProdutoJaExisteException, ProdutoInexistenteException, IOException {
         GerenciaEstoque sistema = new GerenciaEstoque();
         try {
@@ -18,7 +16,6 @@ public class SistemaMercado {
                     "Seus dados não foram recuperados!");
         }
         while(true){
-            //cadastrar, remover, alterar e pesquisar
             String[] opcoes = {"Cadastrar", "Remover", "Alterar", "Pesquisar","Salvar", "Sair"};
             int escolha = JOptionPane.showOptionDialog(null,
                     "Escolha uma opção:", "Menu", JOptionPane.DEFAULT_OPTION,
