@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
-public class SistemaMercado {
+public class SistemaGerenciaMercado {
 
     public static void main(String[] args) throws IOException {
         GerenciaEstoque sistema = new GerenciaEstoque();
