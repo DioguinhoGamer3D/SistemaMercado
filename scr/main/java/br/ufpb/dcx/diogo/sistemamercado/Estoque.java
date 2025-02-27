@@ -3,7 +3,7 @@ package br.ufpb.dcx.diogo.sistemamercado;
 import java.io.IOException;
 import java.util.List;
 
-public interface Estoque {
+public abstract interface Estoque {
 
     public void cadastrarProduto(String codigoProduto, String nomeProduto, int quantidade, double preco) throws ProdutoJaExisteException;
 
