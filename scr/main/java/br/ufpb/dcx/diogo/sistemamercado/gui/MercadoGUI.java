@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class MercadoGUI extends JFrame {
         JLabel linha1, linha2;
-        ImageIcon mercadoImg = new ImageIcon("./imgs/bolo.jpg");
+        ImageIcon mercadoImg = new ImageIcon("./imgs/Mercado.png");
         ImageIcon cadImg = new ImageIcon("./imgs/icons/add_person.png");
         ImageIcon pesqImg = new ImageIcon("./imgs/icons/search_person.png");
         ImageIcon removeImg = new ImageIcon("./imgs/icons/remove_person.png");
@@ -24,7 +24,7 @@ public class MercadoGUI extends JFrame {
             setTitle("Sistema Gerencia de Mercado");
             setSize(800, 600);
             setLocation(150, 150);
-            setResizable(false);
+            setResizable(true);
             getContentPane().setBackground(Color.white);
             linha1 = new JLabel("Sistema para gerenciar um mercado", JLabel.CENTER);
             linha1.setForeground(Color.red);
