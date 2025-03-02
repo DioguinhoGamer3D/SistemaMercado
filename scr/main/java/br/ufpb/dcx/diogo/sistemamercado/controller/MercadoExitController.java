@@ -17,6 +17,7 @@ public class MercadoExitController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(janelaPrincipal, "Saindo...");
         System.exit(0);
     }
 }

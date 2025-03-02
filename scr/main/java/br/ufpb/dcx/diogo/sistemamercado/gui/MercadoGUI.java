@@ -18,16 +18,20 @@ public class MercadoGUI extends JFrame {
         ImageIcon exitImg = new ImageIcon("./imgs/icons/exit_icon.png");
         JButton botaoCadastrar, botaoPesquisar, botaoRemover, botaoAlterar, botaoSalvar, botaoSair;
         Estoque estoque = new GerenciaEstoque();
+        MercadoLoadController m = new MercadoLoadController(estoque,this);
 
     public MercadoGUI() {
+        new Thread(()-> m.actionPerformed(null)).start();
+        Font customFont = LoadFont.loadCustomFont("./imgs/Font/Oswald-VariableFont_wght.ttf", 24);
+        Font customFontBold = customFont.deriveFont(Font.BOLD, 26);
         setTitle("Sistema Gerencia de Mercado");
         setSize(800, 600);
-        setLocation(150, 150);
+        setLocationRelativeTo(null);
         setResizable(false);
         getContentPane().setBackground(new Color(254, 255, 239));
         linha1 = new JLabel("Sistema para gerenciar um mercado", JLabel.CENTER);
         linha1.setForeground(Color.red);
-        linha1.setFont(new Font("Serif", Font.BOLD, 24));
+        linha1.setFont(customFontBold);
         linha2 = new JLabel(mercadoImg, JLabel.CENTER);
         botaoCadastrar = new JButton("Cadastrar produto", cadImg);
         botaoCadastrar.setBackground(new Color(254, 255, 239));
@@ -57,9 +61,9 @@ public class MercadoGUI extends JFrame {
         getContentPane().add(botaoSalvar);
         getContentPane().add(botaoSair);
     }
-    public static void main(String [] args){
-                JFrame janela = new MercadoGUI();
-                janela.setVisible(true);
-                janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public static void main(String [] args) {
+        JFrame janela = new MercadoGUI();
+        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        janela.setVisible(true);
     }
 }
