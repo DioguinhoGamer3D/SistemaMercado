@@ -2,10 +2,7 @@ package br.ufpb.dcx.diogo.sistemamercado.gui;
 
 import br.ufpb.dcx.diogo.sistemamercado.Estoque;
 import br.ufpb.dcx.diogo.sistemamercado.GerenciaEstoque;
-import br.ufpb.dcx.diogo.sistemamercado.controller.MercadoCadController;
-import br.ufpb.dcx.diogo.sistemamercado.controller.MercadoChangeController;
-import br.ufpb.dcx.diogo.sistemamercado.controller.MercadoRemoveController;
-import br.ufpb.dcx.diogo.sistemamercado.controller.MercadoSeachController;
+import br.ufpb.dcx.diogo.sistemamercado.controller.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +14,9 @@ public class MercadoGUI extends JFrame {
         ImageIcon pesqImg = new ImageIcon("./imgs/icons/search_icon.png");
         ImageIcon removeImg = new ImageIcon("./imgs/icons/remove_icon.png");
         ImageIcon altImg = new ImageIcon("./imgs/icons/change_icon.png");
-        JButton botaoCadastrar, botaoPesquisar, botaoRemover, botaoAlterar;
+        ImageIcon saveImg = new ImageIcon("./imgs/icons/save_icon.png");
+        ImageIcon exitImg = new ImageIcon("./imgs/icons/exit_icon.png");
+        JButton botaoCadastrar, botaoPesquisar, botaoRemover, botaoAlterar, botaoSalvar, botaoSair;
         Estoque estoque = new GerenciaEstoque();
 
     public MercadoGUI() {
@@ -42,13 +41,21 @@ public class MercadoGUI extends JFrame {
         botaoAlterar = new JButton("Alterar Produto", altImg);
         botaoAlterar.setBackground(new Color(254, 255, 239));
         botaoAlterar.addActionListener(new MercadoChangeController(estoque,this));
-        getContentPane().setLayout(new GridLayout(3,2));
+        botaoSalvar = new JButton("Salvar", saveImg);
+        botaoSalvar.setBackground(new Color(254, 255, 239));
+        botaoSalvar.addActionListener(new MercadoSaveController(estoque,this));
+        botaoSair = new JButton("Sair",exitImg);
+        botaoSair.setBackground(new Color(254, 255, 239));
+        botaoSair.addActionListener(new MercadoExitController(estoque,this));
+        getContentPane().setLayout(new GridLayout(4,2));
         getContentPane().add(linha1);
         getContentPane().add(linha2);
         getContentPane().add(botaoCadastrar);
         getContentPane().add(botaoRemover);
         getContentPane().add(botaoPesquisar);
         getContentPane().add(botaoAlterar);
+        getContentPane().add(botaoSalvar);
+        getContentPane().add(botaoSair);
     }
     public static void main(String [] args){
                 JFrame janela = new MercadoGUI();
