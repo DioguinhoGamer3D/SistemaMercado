@@ -29,17 +29,12 @@ public class GerenciaEstoque implements Estoque{
     }
 
     public List<Produto> pesquisarProdutosComBaixoEstoque(int limite) throws ProdutoInexistenteException{
-            List<Produto> produtosComBaixoEstoque = new ArrayList<>();
-            for (Produto produto : produtos.values()) {
-                if (produto.getQuantidade() < limite) {
-                    produtosComBaixoEstoque.add(produto);
-                }
-            }
-            if(produtosComBaixoEstoque.isEmpty()){
-                throw new ProdutoInexistenteException("Não existe produto com menos que essa quantidade no estoque.");
-            } else {
-                return produtosComBaixoEstoque;
-            }
+        List <Produto> produtoComBaixoEstoque = this.produtos.values()
+                .stream(). filter(p -> p.getQuantidade() <= limite).toList();
+        if(produtoComBaixoEstoque.isEmpty()){
+            throw new ProdutoInexistenteException("Nenhum produto encontrado com estoque menor que"+limite);
+        }
+        return produtoComBaixoEstoque;
     }
 
     public void removerProduto(String codigoProduto) throws ProdutoInexistenteException {

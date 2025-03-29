@@ -12,6 +12,6 @@ public class MercadoGUI_Com_Menu extends JFrame{
         JMenuBar barraDoMenu = new JMenuBar();
 
         public MercadoGUI_Com_Menu(){
-            setTitle();
+            setTitle("cuy");
         }
 }

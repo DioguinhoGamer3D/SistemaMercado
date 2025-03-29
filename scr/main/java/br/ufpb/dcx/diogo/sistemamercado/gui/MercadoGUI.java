@@ -33,22 +33,24 @@ public class MercadoGUI extends JFrame {
         linha1.setForeground(Color.red);
         linha1.setFont(customFontBold);
         linha2 = new JLabel(mercadoImg, JLabel.CENTER);
-        botaoCadastrar = new JButton("Cadastrar produto", cadImg);
+        botaoCadastrar = new JButton("1- Cadastrar produto", cadImg);
+        botaoCadastrar.setDisplayedMnemonicIndex(0);
+        botaoCadastrar.setToolTipText("Cadastrar um produto");
         botaoCadastrar.setBackground(new Color(254, 255, 239));
         botaoCadastrar.addActionListener(new MercadoCadController(estoque,this));
-        botaoRemover = new JButton("Remover produto",removeImg);
+        botaoRemover = new JButton("2- Remover produto",removeImg);
         botaoRemover.setBackground(new Color(254, 255, 239));
         botaoRemover.addActionListener(new MercadoRemoveController(estoque,this));
-        botaoPesquisar = new JButton("Pesquisar produto", pesqImg);
+        botaoPesquisar = new JButton("3- Pesquisar produto", pesqImg);
         botaoPesquisar.setBackground(new Color(254, 255, 239));
         botaoPesquisar.addActionListener(new MercadoSeachController(estoque,this));
-        botaoAlterar = new JButton("Alterar Produto", altImg);
+        botaoAlterar = new JButton("4- Alterar Produto", altImg);
         botaoAlterar.setBackground(new Color(254, 255, 239));
         botaoAlterar.addActionListener(new MercadoChangeController(estoque,this));
-        botaoSalvar = new JButton("Salvar", saveImg);
+        botaoSalvar = new JButton("5- Salvar", saveImg);
         botaoSalvar.setBackground(new Color(254, 255, 239));
         botaoSalvar.addActionListener(new MercadoSaveController(estoque,this));
-        botaoSair = new JButton("Sair",exitImg);
+        botaoSair = new JButton("6- Sair",exitImg);
         botaoSair.setBackground(new Color(254, 255, 239));
         botaoSair.addActionListener(new MercadoExitController(estoque,this));
         getContentPane().setLayout(new GridLayout(4,2));
@@ -60,6 +62,7 @@ public class MercadoGUI extends JFrame {
         getContentPane().add(botaoAlterar);
         getContentPane().add(botaoSalvar);
         getContentPane().add(botaoSair);
+        //TODO setar o tamanhos dos botoes
     }
     public static void main(String [] args) {
         JFrame janela = new MercadoGUI();
